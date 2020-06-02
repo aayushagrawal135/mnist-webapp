@@ -1,8 +1,22 @@
 <hmtl>
     <head>
-        <title>{{title}}</title>
+        <title>
+            {% if title %}
+                {{title}}
+            {% else %}
+                Home
+            {% endif %}
+        </title>
     </head>
     <body>
         <h1>Hello, {{user.username}}!</h1>
+
+        {% for post in posts %}
+            <div>
+                <span><strong>{{post.author.username}}</strong></span>
+                <div>{{post.body}}</div>
+                <br>
+            </div>
+        {% endfor %}
     </body>
 </hmtl>
