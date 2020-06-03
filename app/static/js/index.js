@@ -6,6 +6,7 @@ window.addEventListener('load', ()=>{
     document.addEventListener('mouseup', stopPainting);
     document.addEventListener('mousemove', sketch);
     window.addEventListener('resize', resize);
+    document.getElementById("clear-canvas").addEventListener("click", clearCanvas);
 })
 
 const canvas = document.querySelector('#canvas')
@@ -13,13 +14,17 @@ const canvas = document.querySelector('#canvas')
 // a context helps to indentify what type of redering is required
 // https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/getContext
 const ctx = canvas.getContext('2d')
+ctx.strokeStyle="#FFF000";
+ctx.canvas.width = 400;
+ctx.canvas.height = 400;
 
 // we can improve the resize with a box around
 function resize() {
-    ctx.strokeStyle="#FFF000";
-    ctx.canvas.width = 400;
-    ctx.canvas.height = 400;
     ctx.strokeRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+}
+
+function clearCanvas() {
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 }
 
 // intialise
@@ -62,4 +67,9 @@ function sketch(event) {
 
     // actually draw the line
     ctx.stroke();
+}
+
+function clearCanvas() {
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    ctx.strokeRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 }

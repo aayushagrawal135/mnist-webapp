@@ -3,5 +3,11 @@
 {% block content %}
     <h1>MNIST app</h1>
     <canvas id="canvas"></canvas>
+
+    <div>
+        <button id="clear-canvas">Clear Canvas</button>
+        <button>Submit</button>
+    </div>
+
     <script type="text/javascript" src="{{url_for('static', filename='js/index.js')}}"></script>
 {% endblock %}
