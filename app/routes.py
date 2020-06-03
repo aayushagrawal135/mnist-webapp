@@ -23,5 +23,5 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         flash(f"Login requested from user {form.username.data}")
-        return redirect("/index")
+        return redirect(url_for('index'))
     return render_template("login.html", title = "Sign In", form = form)
