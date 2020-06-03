@@ -7,8 +7,24 @@
         {% endif %}
     </title>
     <body>
+        <div>
+            <a href = "/index">Home</a>
+            <a href = "/login">Login</a>
+            <hr>
+        </div>
+
+        <div>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul>
+                        {% for message in messages %}
+                            <li>{{message}}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+        </div>
+
         {% block content %}{% endblock %}
-        {% block navigation %}{% endblock %}
-        
     </body>
 </html>
