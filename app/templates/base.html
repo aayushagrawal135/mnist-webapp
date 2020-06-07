@@ -1,11 +1,14 @@
 <html>
-    <title>
-        {% if title %}
-            {{title}}
-        {% else %}
-            Home
-        {% endif %}
-    </title>
+    <head>
+        <title>
+            {% if title %}
+                {{title}}
+            {% else %}
+                Home
+            {% endif %}
+        </title>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    </head>
     <body>
         <div>
             <a href ="{{ url_for('index') }}">Home</a>
