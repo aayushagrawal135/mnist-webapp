@@ -1,12 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+
     <h1>MNIST app</h1>
     <canvas id="canvas"></canvas>
 
     <div>
         <button id="clear-canvas">Clear Canvas</button>
-        <button>Submit</button>
+        <button id="submit">Submit</button>
     </div>
 
     <script type="text/javascript" src="{{url_for('static', filename='js/index.js')}}"></script>

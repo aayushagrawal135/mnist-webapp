@@ -7,6 +7,7 @@ window.addEventListener('load', ()=>{
     document.addEventListener('mousemove', sketch);
     window.addEventListener('resize', resize);
     document.getElementById("clear-canvas").addEventListener("click", clearCanvas);
+    document.getElementById("submit").addEventListener("click", submitCanvas);
 })
 
 const canvas = document.querySelector('#canvas')
@@ -15,8 +16,8 @@ const canvas = document.querySelector('#canvas')
 // https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/getContext
 const ctx = canvas.getContext('2d')
 ctx.strokeStyle="#FFF000";
-ctx.canvas.width = 400;
-ctx.canvas.height = 400;
+ctx.canvas.width = 28;
+ctx.canvas.height = 28;
 
 // we can improve the resize with a box around
 function resize() {
@@ -72,4 +73,21 @@ function sketch(event) {
 function clearCanvas() {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     ctx.strokeRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+}
+
+function submitCanvas() {
+    let img = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+    fetch('submitted_image', {
+        method: 'POST',
+        headers: new Headers({'content-type': 'application/json'}),
+        body: JSON.stringify({"pixel_values": img})
+    }).then(
+        function(response) { return response.text(); }
+    ).then(
+        function(text) {
+            console.log("Post request: ");
+            console.log(text);
+        }
+    )
 }
