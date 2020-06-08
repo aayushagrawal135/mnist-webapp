@@ -4,6 +4,8 @@ from app.forms import LoginForm
 import numpy as np
 import json
 
+from app import nn_model
+
 from app.helper import *
 
 @app.route('/')
@@ -26,8 +28,9 @@ def submitted_image():
     if request.method == 'POST':
         print("incoming towards the server...")
         pixel_array = formatRequest(request.json)
-        print(np.shape(pixel_array))
-        return 'OK', 200
+        prediction = nn_model.predict(pixel_array).argmax(axis = 1)
+        message = f"{prediction[0]}"
+        return message, 200
     else:
         message = {"greeting": "Hello"}
         return jsonify(message)
