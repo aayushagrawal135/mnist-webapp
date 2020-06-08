@@ -14,10 +14,11 @@ from plot_functions import *
 # https://www.kaggle.com/oddrationale/mnist-in-csv
 train_path = "../data/mnist_train.csv"
 data = pd.read_csv(train_path)
+data = data[:15000]
 
 pixels, labels = featLabelSep(data)
 
-trn = 100
+trn = 10000
 trn_labels, valid_labels = split_vals(labels, trn)
 trn_pixels, valid_pixels = split_vals(pixels, trn)
 
@@ -41,7 +42,7 @@ trainer = Trainer(model=model)
 trainer.setInputs(norm_trn_pixels)
 trainer.setLabels(oneHotEncode(trn_labels))
 trainer.setEpochs(20)
-trainer.setLearningRate(1)
+trainer.setLearningRate(0.08)
 trainer.run()
 
 filename = "../data/nn_params.json"
