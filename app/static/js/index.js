@@ -73,6 +73,7 @@ function sketch(event) {
 function clearCanvas() {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     ctx.strokeRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    document.getElementById("result").innerText = "";
 }
 
 function submitCanvas() {
@@ -88,6 +89,7 @@ function submitCanvas() {
         function(text) {
             console.log("Post request: ");
             console.log(text);
+            document.getElementById("result").innerText = text;
         }
     )
 }
