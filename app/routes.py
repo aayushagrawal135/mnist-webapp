@@ -4,9 +4,7 @@ from app.forms import LoginForm
 import numpy as np
 import json
 
-from app import nn_model
-
-from app.helper import *
+from app.helper import formatRequest, getPrediction
 
 @app.route('/')
 @app.route('/index')
@@ -28,8 +26,7 @@ def submitted_image():
     if request.method == 'POST':
         print("incoming towards the server...")
         pixel_array = formatRequest(request.json)
-        prediction = nn_model.predict(pixel_array).argmax(axis = 1)
-        message = f"{prediction[0]}"
+        message = f"{getPrediction(pixel_array)}"
         return message, 200
     else:
         message = {"greeting": "Hello"}
